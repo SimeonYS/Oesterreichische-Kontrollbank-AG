@@ -35,7 +35,7 @@ class SpiderSpider(scrapy.Spider):
         date = response.xpath('//div[contains(@class,"news-date business-area")]//text()').get().strip()
         title = ' '.join(response.xpath('//h1/span//text()').getall())
         title = re.sub(pattern, '', title)
-        content = response.xpath('//section[@class="content content-area"]//text()').getall()
+        content = response.xpath('//section[@class="content content-area"]//text()| //section[@class="content intro content-area"]//text()').getall()
         content = [text.strip() for text in content if text.strip()]
         content = re.sub(pattern, "", ' '.join(content))
 
