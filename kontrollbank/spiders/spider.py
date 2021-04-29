@@ -33,7 +33,7 @@ class SpiderSpider(scrapy.Spider):
         item = ItemLoader(KontrollbankItem())
         item.default_output_processor = TakeFirst()
         date = response.xpath('//div[contains(@class,"news-date business-area")]//text()').get().strip()
-        title = ' '.join(response.xpath('//section[@class="content intro content-area"]//text()').getall())
+        title = ' '.join(response.xpath('//h1/span//text()').getall())
         title = re.sub(pattern, '', title)
         content = response.xpath('//section[@class="content content-area"]//text()').getall()
         content = [text.strip() for text in content if text.strip()]
